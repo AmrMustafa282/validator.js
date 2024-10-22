@@ -13,7 +13,7 @@ function isValidFormat(format) {
 function zip(date, format) {
   const zippedArr = [],
     // take the higher length of the two arrays to avoid index out of bounds
-    len = Math.Max(date.length, format.length);
+    len = Math.max(date.length, format.length);
 
   for (let i = 0; i < len; i++) {
     zippedArr.push([date[i], format[i]]);
