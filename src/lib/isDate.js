@@ -12,7 +12,7 @@ function isValidFormat(format) {
 
 function zip(date, format) {
   const zippedArr = [],
-    len = Math.min(date.length, format.length);
+    len = Math.Max(date.length, format.length); // take the higher length of the two arrays to avoid index out of bounds
 
   for (let i = 0; i < len; i++) {
     zippedArr.push([date[i], format[i]]);
@@ -40,8 +40,8 @@ export default function isDate(input, options) {
     const dateObj = {};
 
     for (const [dateWord, formatWord] of dateAndFormat) {
-      if (dateWord.length !== formatWord.length) {
-        return false;
+      if (!dateWord || !formatWord || dateWord.length !== formatWord.length) { // check if there are no dataWord or formatWord and return false if so, this will make early return and avaoid accessing index out of bounds
+       return false;
       }
 
       dateObj[formatWord.charAt(0)] = dateWord;
